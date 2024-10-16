@@ -63,6 +63,9 @@ Skrypt ten jest wszechstronnym narzędziem do monitorowania aktywności na kompu
 
 ________________________________________________________
 config.json DLA SCREENSHOT musi zawierać:
+
+
+
 {
   "duration_seconds": 3600,
   "alert_threshold": 1800,
