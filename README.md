@@ -1,5 +1,5 @@
 Opis działania skryptu:
-
+________________________________________________________
 Skrypt ma na celu monitorowanie aktywności aplikacji na komputerze, rejestrowanie naciśnięć klawiszy oraz wysyłanie wynikowych logów na adres e-mail. Może być stosowany np. do kontrolowania aktywności dzieci na komputerze, pozwalając na zbieranie danych o tym, jakie programy były używane oraz jakie klawisze były naciskane.
 Funkcje skryptu:
 
@@ -29,13 +29,13 @@ Funkcje skryptu:
         Po zakończeniu monitorowania, skrypt wysyła wiadomość e-mail z załączonymi plikami: logami naciśnięć klawiszy oraz raportem z aktywności aplikacji.
         Wiadomość e-mail może być wysyłana przez Gmaila lub inne serwery pocztowe, pod warunkiem odpowiedniej konfiguracji.
         W wiadomości znajduje się temat, treść oraz załączniki z danymi.
-
+________________________________________________________
 Użyte technologie:
 
     Python: Skrypt został napisany w języku Python i korzysta z kilku popularnych bibliotek, takich jak psutil (do monitorowania procesów), pynput (do rejestrowania naciśnięć klawiszy) oraz smtplib (do wysyłania e-maili).
     SMTP: Do wysyłania wiadomości e-mail używany jest protokół SMTP (Simple Mail Transfer Protocol), który jest standardem do przesyłania poczty internetowej. W przykładzie korzysta się z serwera Gmail.
     Matplotlib: Ta biblioteka służy do generowania wykresów, które przedstawiają czas spędzony w różnych aplikacjach.
-
+________________________________________________________
 Proces działania:
 
     Uruchomienie skryptu: Po uruchomieniu skrypt zaczyna nasłuchiwanie naciśnięć klawiszy oraz monitorowanie uruchomionych aplikacji.
@@ -47,13 +47,13 @@ Proces działania:
     Wizualizacja danych: Skrypt generuje wykres z czasem spędzonym w aplikacjach, co pomaga w szybkiej analizie danych.
 
     Wysyłanie e-maila: Po zakończeniu monitorowania skrypt automatycznie wysyła wiadomość e-mail na podany adres, z załączonymi plikami logów.
-
+________________________________________________________
 Praktyczne zastosowanie:
 
     Kontrola rodzicielska: Skrypt może być używany do monitorowania aktywności dzieci na komputerze, rejestrowania, jakie aplikacje są uruchamiane oraz jak długo były używane.
     Monitorowanie efektywności pracy: Może być również wykorzystany w biurze do monitorowania czasu spędzanego w poszczególnych programach przez pracowników (z ich wiedzą).
     Zarządzanie czasem: Użytkownicy mogą śledzić własne nawyki związane z korzystaniem z komputera, aby lepiej zarządzać czasem spędzanym w różnych aplikacjach.
-
+________________________________________________________
 Ważne kwestie:
 
     Prawa i prywatność: Wykorzystanie tego rodzaju narzędzi musi być zgodne z prawem i etyką. Monitorowanie aktywności użytkowników bez ich zgody może być nielegalne w wielu krajach, w tym w Norwegii.
