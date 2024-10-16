@@ -1,107 +1,62 @@
-Opis funkcji:
+Opis działania skryptu:
 
-    Biblioteki:
-        psutil: Służy do monitorowania uruchomionych procesów (czyli aplikacji działających na komputerze).
-        time: Używane do opóźnień w pętli monitorującej procesy i do pomiaru czasu.
-        csv: Służy do zapisywania danych o aktywności aplikacji w pliku CSV.
-        smtplib: Służy do wysyłania wiadomości e-mail za pomocą serwera SMTP.
-        email.mime (MIMEMultipart, MIMEText, MIMEBase): Używane do tworzenia e-maili z załącznikami.
-        matplotlib.pyplot: Używane do generowania wykresów z czasem spędzonym w aplikacjach.
-        collections.defaultdict: Używane do przechowywania danych o uruchomionych aplikacjach.
-        pynput.keyboard: Służy do rejestrowania naciśnięć klawiszy (keylogger).
-
+Skrypt ma na celu monitorowanie aktywności aplikacji na komputerze, rejestrowanie naciśnięć klawiszy oraz wysyłanie wynikowych logów na adres e-mail. Może być stosowany np. do kontrolowania aktywności dzieci na komputerze, pozwalając na zbieranie danych o tym, jakie programy były używane oraz jakie klawisze były naciskane.
 Funkcje skryptu:
-1. on_press(key):
 
-    Opis: Funkcja ta jest wywoływana za każdym razem, gdy zostanie naciśnięty klawisz na klawiaturze.
-    Działanie: Rejestruje naciśnięty klawisz i zapisuje go do globalnej listy key_logs.
+    Monitorowanie uruchomionych aplikacji:
+        Skrypt regularnie sprawdza, które aplikacje są uruchomione na komputerze.
+        Rejestruje czas, w którym aplikacje zostały uruchomione, oraz łączny czas ich aktywności.
+        Monitorowane są wybrane aplikacje (można zdefiniować, jakie programy mają być śledzone, np. przeglądarki internetowe, programy do edycji dokumentów itp.).
 
-2. start_keylogger():
+    Rejestracja naciśnięć klawiszy (keylogger):
+        Skrypt rejestruje wszystkie naciśnięcia klawiszy na klawiaturze.
+        Każde naciśnięcie jest zapisywane w pliku tekstowym.
+        Keylogger działa w tle, nie zakłócając pracy innych funkcji skryptu.
 
-    Opis: Inicjuje proces nasłuchiwania klawiatury w tle, który rejestruje naciśnięcia klawiszy za pomocą funkcji on_press.
-    Działanie: Tworzy nowy wątek nasłuchiwania klawiatury, który nie koliduje z głównym działaniem skryptu.
+    Generowanie raportu z aktywności aplikacji:
+        Po zakończeniu monitorowania, skrypt generuje raport zawierający listę aplikacji, które były uruchomione, oraz czas ich aktywności.
+        Raport ten jest zapisywany w pliku CSV (plik tekstowy z danymi oddzielonymi przecinkami), który można otworzyć w Excelu lub innych arkuszach kalkulacyjnych.
 
-3. monitor_processes(duration):
+    Generowanie wykresu aktywności aplikacji:
+        Skrypt tworzy wykres przedstawiający czas spędzony w poszczególnych aplikacjach.
+        Wykres ten wizualizuje, ile minut było spędzonych w każdej aplikacji, co ułatwia analizę.
 
-    Opis: Monitoruje aktywne procesy (uruchomione aplikacje) przez określony czas.
-    Działanie: Przez zadany czas (w sekundach) monitoruje, które aplikacje są uruchomione. Zapisuje informacje o czasie trwania każdej aplikacji oraz kiedy dana aplikacja została uruchomiona.
-    Dane wyjściowe: Zwraca słownik z nazwami aplikacji i czasem ich uruchomienia oraz łącznym czasem użycia.
+    Powiadomienia o nadmiernym użyciu aplikacji:
+        Skrypt sprawdza, czy dana aplikacja była używana przez dłuższy czas niż określony próg (np. 30 minut).
+        Jeśli czas ten zostanie przekroczony, skrypt wyświetla ostrzeżenie w terminalu.
 
-4. save_to_csv(data, filename):
+    Wysyłanie logów na e-mail:
+        Po zakończeniu monitorowania, skrypt wysyła wiadomość e-mail z załączonymi plikami: logami naciśnięć klawiszy oraz raportem z aktywności aplikacji.
+        Wiadomość e-mail może być wysyłana przez Gmaila lub inne serwery pocztowe, pod warunkiem odpowiedniej konfiguracji.
+        W wiadomości znajduje się temat, treść oraz załączniki z danymi.
 
-    Opis: Zapisuje dane o aktywności aplikacji do pliku CSV.
-    Działanie: Tworzy plik CSV, w którym zapisuje się lista aplikacji, czas ich uruchomienia oraz łączny czas działania w sekundach.
+Użyte technologie:
 
-5. save_key_logs(filename):
+    Python: Skrypt został napisany w języku Python i korzysta z kilku popularnych bibliotek, takich jak psutil (do monitorowania procesów), pynput (do rejestrowania naciśnięć klawiszy) oraz smtplib (do wysyłania e-maili).
+    SMTP: Do wysyłania wiadomości e-mail używany jest protokół SMTP (Simple Mail Transfer Protocol), który jest standardem do przesyłania poczty internetowej. W przykładzie korzysta się z serwera Gmail.
+    Matplotlib: Ta biblioteka służy do generowania wykresów, które przedstawiają czas spędzony w różnych aplikacjach.
 
-    Opis: Zapisuje naciśnięcia klawiszy (keylogi) do pliku tekstowego.
-    Działanie: Tworzy plik tekstowy i zapisuje w nim każde naciśnięcie klawisza zapisane w globalnej liście key_logs.
+Proces działania:
 
-6. send_email(subject, body, to_email, from_email, from_password, files):
+    Uruchomienie skryptu: Po uruchomieniu skrypt zaczyna nasłuchiwanie naciśnięć klawiszy oraz monitorowanie uruchomionych aplikacji.
 
-    Opis: Wysyła wiadomość e-mail z załącznikami.
-    Działanie: Tworzy wiadomość e-mail za pomocą MIMEMultipart, dodaje załączniki (pliki CSV z logami oraz keylogi), łączy się z serwerem SMTP (np. Gmail) i wysyła wiadomość.
-    Argumenty:
-        subject: Temat wiadomości e-mail.
-        body: Treść wiadomości.
-        to_email: Adres odbiorcy.
-        from_email: Twój adres e-mail (nadawca).
-        from_password: Hasło do twojego konta e-mail (może wymagać specjalnego hasła aplikacji w Gmailu).
-        files: Lista plików, które mają być załączone do e-maila.
+    Monitorowanie aktywności: Skrypt regularnie sprawdza, które aplikacje są aktywne i jak długo były uruchomione. Rejestruje również każde naciśnięcie klawisza.
 
-7. print_summary(data):
+    Zapis logów: Pod koniec okresu monitorowania (który można ustawić) skrypt zapisuje wszystkie zebrane dane do plików: jeden plik CSV z raportem aplikacji oraz plik tekstowy z naciśnięciami klawiszy.
 
-    Opis: Wyświetla podsumowanie aktywności aplikacji w terminalu.
-    Działanie: Wyświetla listę monitorowanych aplikacji, czas ich uruchomienia oraz łączny czas działania w godzinach, minutach i sekundach.
+    Wizualizacja danych: Skrypt generuje wykres z czasem spędzonym w aplikacjach, co pomaga w szybkiej analizie danych.
 
-8. plot_usage(data):
+    Wysyłanie e-maila: Po zakończeniu monitorowania skrypt automatycznie wysyła wiadomość e-mail na podany adres, z załączonymi plikami logów.
 
-    Opis: Generuje wykres słupkowy przedstawiający czas spędzony w każdej aplikacji.
-    Działanie: Tworzy wykres za pomocą matplotlib, który przedstawia czas (w minutach) spędzony w każdej z monitorowanych aplikacji.
+Praktyczne zastosowanie:
 
-9. check_usage_alerts(data, alert_threshold):
+    Kontrola rodzicielska: Skrypt może być używany do monitorowania aktywności dzieci na komputerze, rejestrowania, jakie aplikacje są uruchamiane oraz jak długo były używane.
+    Monitorowanie efektywności pracy: Może być również wykorzystany w biurze do monitorowania czasu spędzanego w poszczególnych programach przez pracowników (z ich wiedzą).
+    Zarządzanie czasem: Użytkownicy mogą śledzić własne nawyki związane z korzystaniem z komputera, aby lepiej zarządzać czasem spędzanym w różnych aplikacjach.
 
-    Opis: Sprawdza, czy czas użycia aplikacji przekracza określony próg, i generuje ostrzeżenie w terminalu.
-    Działanie: Sprawdza, czy dana aplikacja była używana dłużej niż określony czas (np. 30 minut). Jeśli tak, wyświetla ostrzeżenie w terminalu.
+Ważne kwestie:
 
-Główna część programu:
-1. Uruchomienie keyloggera:
+    Prawa i prywatność: Wykorzystanie tego rodzaju narzędzi musi być zgodne z prawem i etyką. Monitorowanie aktywności użytkowników bez ich zgody może być nielegalne w wielu krajach, w tym w Norwegii.
+    Bezpieczeństwo: Logi z naciśnięciami klawiszy oraz inne dane powinny być przechowywane i zabezpieczane w odpowiedni sposób, aby nie dostały się w niepowołane ręce.
 
-    Skrypt rozpoczyna nasłuchiwanie klawiatury w tle za pomocą funkcji start_keylogger().
-
-2. Monitorowanie procesów:
-
-    Skrypt monitoruje procesy przez określony czas (w przykładzie jest to 1 godzina). Używając funkcji monitor_processes(), zbiera dane o aktywnych aplikacjach i ich czasie działania.
-
-3. Zapisywanie danych:
-
-    Logi aktywności aplikacji są zapisywane w pliku CSV za pomocą funkcji save_to_csv().
-    Logi z naciśnięciami klawiszy są zapisywane do pliku tekstowego za pomocą funkcji save_key_logs().
-
-4. Wyświetlenie podsumowania i wykres:
-
-    Funkcja print_summary() wyświetla podsumowanie aktywności aplikacji w terminalu.
-    Funkcja plot_usage() generuje wykres z czasem spędzonym w każdej aplikacji.
-
-5. Sprawdzenie ostrzeżeń:
-
-    Funkcja check_usage_alerts() sprawdza, czy czas użycia aplikacji przekroczył określony próg, i wyświetla odpowiednie ostrzeżenie.
-
-6. Wysyłanie e-maila:
-
-    Na końcu skrypt wysyła wiadomość e-mail z załącznikami, które zawierają pliki CSV z logami aktywności aplikacji oraz plik z naciśnięciami klawiszy.
-
-Jak działa cały skrypt:
-
-    Uruchomienie keyloggera, który działa w tle i rejestruje naciśnięcia klawiszy.
-    Monitorowanie uruchomionych aplikacji przez określony czas.
-    Zapisanie logów do plików tekstowych i CSV.
-    Wyświetlenie wyników monitorowania w terminalu oraz wygenerowanie wykresu.
-    Wysyłanie logów na e-mail wraz z załącznikami.
-    Sprawdzanie, czy czas użycia aplikacji przekracza ustalone limity i wyświetlanie ostrzeżeń.
-
-Ważne informacje:
-
-    Aby wysyłać e-maile, musisz skonfigurować odpowiednie ustawienia w Gmailu (np. hasło aplikacji lub włączyć dostęp dla mniej bezpiecznych aplikacji).
-    Skrypt można łatwo dostosować do monitorowania innych aplikacji, zmieniając listę MONITORED_APPS.
-    Skrypt działa na komputerze z systemem Windows, Linux lub macOS, ale dostęp do niektórych aplikacji może wymagać dodatkowych uprawnień administracyjnych.
+Skrypt ten jest wszechstronnym narzędziem do monitorowania aktywności na komputerze i zarządzania czasem, które można dostosować do różnych zastosowań, takich jak kontrola rodzicielska lub analiza produktywności.
