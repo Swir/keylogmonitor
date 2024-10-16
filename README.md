@@ -64,8 +64,7 @@ Skrypt ten jest wszechstronnym narzędziem do monitorowania aktywności na kompu
 ________________________________________________________
 Przykład pliku config.json z ustawieniem interwału robienia zrzutów ekranu:
 
-json
-
+[code]
 {
   "duration_seconds": 3600,
   "alert_threshold": 1800,
@@ -74,8 +73,6 @@ json
     "to_email": "odbiorca@example.com"
   }
 }
-
-Użycie:
 
 
 
