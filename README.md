@@ -83,7 +83,6 @@ Jak działa GUI?
     Kliknięcie przycisku "Start" rozpoczyna proces monitorowania w tle.
     Wyniki monitorowania są zapisywane w plikach, a raporty są wysyłane na e-mail.
   
-}
-`
-
 ______________________________________________________________________
+
+
