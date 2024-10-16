@@ -54,18 +54,8 @@ Praktyczne zastosowanie:
     Monitorowanie efektywności pracy: Może być również wykorzystany w biurze do monitorowania czasu spędzanego w poszczególnych programach przez pracowników (z ich wiedzą).
     Zarządzanie czasem: Użytkownicy mogą śledzić własne nawyki związane z korzystaniem z komputera, aby lepiej zarządzać czasem spędzanym w różnych aplikacjach.
 ________________________________________________________
-Ważne kwestie:
-
-    Prawa i prywatność: Wykorzystanie tego rodzaju narzędzi musi być zgodne z prawem i etyką. Monitorowanie aktywności użytkowników bez ich zgody może być nielegalne w wielu krajach, w tym w Norwegii.
-    Bezpieczeństwo: Logi z naciśnięciami klawiszy oraz inne dane powinny być przechowywane i zabezpieczane w odpowiedni sposób, aby nie dostały się w niepowołane ręce.
-
-Skrypt ten jest wszechstronnym narzędziem do monitorowania aktywności na komputerze i zarządzania czasem, które można dostosować do różnych zastosowań, takich jak kontrola rodzicielska lub analiza produktywności.
-
-________________________________________________________
 Przykład pliku config.json z ustawieniem interwału robienia zrzutów ekranu:
-
-[code]
-{
+`{
   "duration_seconds": 3600,
   "alert_threshold": 1800,
   "screenshot_interval": 60,  # Interwał robienia zrzutów ekranu w sekundach (1 minuta)
@@ -73,7 +63,6 @@ Przykład pliku config.json z ustawieniem interwału robienia zrzutów ekranu:
     "to_email": "odbiorca@example.com"
   }
 }
-
-
+`
 
 ______________________________________________________________________
