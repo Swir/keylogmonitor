@@ -61,7 +61,28 @@ Przykład pliku config.json z ustawieniem interwału robienia zrzutów ekranu:
   "screenshot_interval": 60,  # Interwał robienia zrzutów ekranu w sekundach (1 minuta)
   "email": {
     "to_email": "odbiorca@example.com"
-  }
+  }`
+  Co zostało dodane?
+
+    Interfejs Graficzny (GUI):
+        Tkinter został wykorzystany do stworzenia prostego GUI, w którym możesz ustawić czas monitorowania i interwał robienia zrzutów ekranu.
+        Użytkownik może wprowadzać wartości w polach tekstowych i kliknąć "Start", aby rozpocząć monitorowanie.
+        GUI działa w osobnym wątku, co pozwala na uruchamianie funkcji monitorowania w tle.
+
+    Konfiguracja z interfejsu:
+        Możesz teraz dynamicznie ustawić parametry monitorowania (np. interwał zrzutów ekranu i czas trwania monitorowania) bez potrzeby edytowania pliku config.json.
+
+    Start i stop monitorowania:
+        Użytkownik może uruchomić monitorowanie za pomocą przycisku "Start", co rozpoczyna rejestrację klawiszy, monitorowanie aplikacji oraz robienie zrzutów ekranu.
+
+Jak działa GUI?
+
+    Po uruchomieniu pojawia się okno graficzne z polami tekstowymi, w których można ustawić:
+        Czas trwania monitorowania (w sekundach).
+        Interwał robienia zrzutów ekranu (w sekundach).
+    Kliknięcie przycisku "Start" rozpoczyna proces monitorowania w tle.
+    Wyniki monitorowania są zapisywane w plikach, a raporty są wysyłane na e-mail.
+  
 }
 `
 
