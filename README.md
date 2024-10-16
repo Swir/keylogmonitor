@@ -62,9 +62,9 @@ Ważne kwestie:
 Skrypt ten jest wszechstronnym narzędziem do monitorowania aktywności na komputerze i zarządzania czasem, które można dostosować do różnych zastosowań, takich jak kontrola rodzicielska lub analiza produktywności.
 
 ________________________________________________________
-config.json DLA SCREENSHOT musi zawierać:
+Przykład pliku config.json z ustawieniem interwału robienia zrzutów ekranu:
 
-
+json
 
 {
   "duration_seconds": 3600,
@@ -74,4 +74,9 @@ config.json DLA SCREENSHOT musi zawierać:
     "to_email": "odbiorca@example.com"
   }
 }
+
+Użycie:
+
+
+
 ______________________________________________________________________
