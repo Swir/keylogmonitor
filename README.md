@@ -60,3 +60,15 @@ Ważne kwestie:
     Bezpieczeństwo: Logi z naciśnięciami klawiszy oraz inne dane powinny być przechowywane i zabezpieczane w odpowiedni sposób, aby nie dostały się w niepowołane ręce.
 
 Skrypt ten jest wszechstronnym narzędziem do monitorowania aktywności na komputerze i zarządzania czasem, które można dostosować do różnych zastosowań, takich jak kontrola rodzicielska lub analiza produktywności.
+
+========================================================================
+config.json DLA SCREENSHOT musi zawierać:
+{
+  "duration_seconds": 3600,
+  "alert_threshold": 1800,
+  "screenshot_interval": 60,  # Interwał robienia zrzutów ekranu w sekundach (1 minuta)
+  "email": {
+    "to_email": "odbiorca@example.com"
+  }
+}
+===========================================================================
