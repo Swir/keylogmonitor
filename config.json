@@ -1,0 +1,7 @@
+{
+  "duration_seconds": 3600,
+  "alert_threshold": 1800,
+  "email": {
+    "to_email": "odbiorca@example.com"
+  }
+}
