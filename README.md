@@ -1,88 +1,65 @@
-Opis działania skryptu:
-________________________________________________________
-Skrypt ma na celu monitorowanie aktywności aplikacji na komputerze, rejestrowanie naciśnięć klawiszy oraz wysyłanie wynikowych logów na adres e-mail. Może być stosowany np. do kontrolowania aktywności dzieci na komputerze, pozwalając na zbieranie danych o tym, jakie programy były używane oraz jakie klawisze były naciskane.
-Funkcje skryptu:
+# Monitorowanie aktywności komputera z rejestracją naciśnięć klawiszy i powiadomieniami
 
-    Monitorowanie uruchomionych aplikacji:
-        Skrypt regularnie sprawdza, które aplikacje są uruchomione na komputerze.
-        Rejestruje czas, w którym aplikacje zostały uruchomione, oraz łączny czas ich aktywności.
-        Monitorowane są wybrane aplikacje (można zdefiniować, jakie programy mają być śledzone, np. przeglądarki internetowe, programy do edycji dokumentów itp.).
+## Opis
 
-    Rejestracja naciśnięć klawiszy (keylogger):
-        Skrypt rejestruje wszystkie naciśnięcia klawiszy na klawiaturze.
-        Każde naciśnięcie jest zapisywane w pliku tekstowym.
-        Keylogger działa w tle, nie zakłócając pracy innych funkcji skryptu.
+Ten skrypt Python umożliwia monitorowanie aktywności komputera, w tym rejestrowanie uruchomionych aplikacji oraz naciśnięć klawiszy. Działa w tle, zapisując wyniki w plikach logów, które można wysyłać na e-mail. Skrypt można wykorzystać do:
 
-    Generowanie raportu z aktywności aplikacji:
-        Po zakończeniu monitorowania, skrypt generuje raport zawierający listę aplikacji, które były uruchomione, oraz czas ich aktywności.
-        Raport ten jest zapisywany w pliku CSV (plik tekstowy z danymi oddzielonymi przecinkami), który można otworzyć w Excelu lub innych arkuszach kalkulacyjnych.
+- Monitorowania aktywności dzieci na komputerze.
+- Śledzenia wydajności pracowników.
+- Lepszego zarządzania własnym czasem spędzonym w aplikacjach.
 
-    Generowanie wykresu aktywności aplikacji:
-        Skrypt tworzy wykres przedstawiający czas spędzony w poszczególnych aplikacjach.
-        Wykres ten wizualizuje, ile minut było spędzonych w każdej aplikacji, co ułatwia analizę.
+## Funkcje
 
-    Powiadomienia o nadmiernym użyciu aplikacji:
-        Skrypt sprawdza, czy dana aplikacja była używana przez dłuższy czas niż określony próg (np. 30 minut).
-        Jeśli czas ten zostanie przekroczony, skrypt wyświetla ostrzeżenie w terminalu.
+### 1. Monitorowanie uruchomionych aplikacji:
+- Regularnie sprawdza, które aplikacje są aktywne.
+- Rejestruje czas uruchomienia i czas aktywności każdej aplikacji.
+- Można zdefiniować listę aplikacji, które mają być monitorowane (np. przeglądarki, edytory tekstu).
 
-    Wysyłanie logów na e-mail:
-        Po zakończeniu monitorowania, skrypt wysyła wiadomość e-mail z załączonymi plikami: logami naciśnięć klawiszy oraz raportem z aktywności aplikacji.
-        Wiadomość e-mail może być wysyłana przez Gmaila lub inne serwery pocztowe, pod warunkiem odpowiedniej konfiguracji.
-        W wiadomości znajduje się temat, treść oraz załączniki z danymi.
-________________________________________________________
-Użyte technologie:
+### 2. Rejestracja naciśnięć klawiszy (keylogger):
+- Rejestruje wszystkie naciśnięcia klawiszy na klawiaturze.
+- Wyniki zapisywane są w pliku tekstowym.
 
-    Python: Skrypt został napisany w języku Python i korzysta z kilku popularnych bibliotek, takich jak psutil (do monitorowania procesów), pynput (do rejestrowania naciśnięć klawiszy) oraz smtplib (do wysyłania e-maili).
-    SMTP: Do wysyłania wiadomości e-mail używany jest protokół SMTP (Simple Mail Transfer Protocol), który jest standardem do przesyłania poczty internetowej. W przykładzie korzysta się z serwera Gmail.
-    Matplotlib: Ta biblioteka służy do generowania wykresów, które przedstawiają czas spędzony w różnych aplikacjach.
-________________________________________________________
-Proces działania:
+### 3. Generowanie raportu z aktywności aplikacji:
+- Tworzy plik CSV z listą uruchomionych aplikacji oraz czasem ich aktywności.
+- Raport można otworzyć w Excelu lub innym programie do obsługi arkuszy kalkulacyjnych.
 
-    Uruchomienie skryptu: Po uruchomieniu skrypt zaczyna nasłuchiwanie naciśnięć klawiszy oraz monitorowanie uruchomionych aplikacji.
+### 4. Generowanie wykresu aktywności:
+- Tworzy wykres przedstawiający czas spędzony w poszczególnych aplikacjach.
 
-    Monitorowanie aktywności: Skrypt regularnie sprawdza, które aplikacje są aktywne i jak długo były uruchomione. Rejestruje również każde naciśnięcie klawisza.
+### 5. Powiadomienia o nadmiernym użyciu aplikacji:
+- Sprawdza, czy aplikacja była używana przez dłużej niż określony czas (np. 30 minut).
+- Wyświetla ostrzeżenie w terminalu, jeśli czas zostanie przekroczony.
 
-    Zapis logów: Pod koniec okresu monitorowania (który można ustawić) skrypt zapisuje wszystkie zebrane dane do plików: jeden plik CSV z raportem aplikacji oraz plik tekstowy z naciśnięciami klawiszy.
+### 6. Wysyłanie logów na e-mail:
+- Wysyła wiadomość e-mail z załączonymi logami naciśnięć klawiszy i raportem z aktywności aplikacji.
+- Wspiera konfigurację wysyłania przez Gmail lub inne serwery pocztowe.
 
-    Wizualizacja danych: Skrypt generuje wykres z czasem spędzonym w aplikacjach, co pomaga w szybkiej analizie danych.
+## Użyte technologie
 
-    Wysyłanie e-maila: Po zakończeniu monitorowania skrypt automatycznie wysyła wiadomość e-mail na podany adres, z załączonymi plikami logów.
-________________________________________________________
-Praktyczne zastosowanie:
+- **Python**: Skrypt został napisany w Pythonie, korzysta z bibliotek:
+  - `psutil`: do monitorowania procesów.
+  - `pynput`: do rejestrowania naciśnięć klawiszy.
+  - `smtplib`: do wysyłania e-maili.
+  - `matplotlib`: do generowania wykresów aktywności aplikacji.
+  
+- **SMTP**: Używany do wysyłania wiadomości e-mail (np. za pomocą serwera Gmail).
 
-    Kontrola rodzicielska: Skrypt może być używany do monitorowania aktywności dzieci na komputerze, rejestrowania, jakie aplikacje są uruchamiane oraz jak długo były używane.
-    Monitorowanie efektywności pracy: Może być również wykorzystany w biurze do monitorowania czasu spędzanego w poszczególnych programach przez pracowników (z ich wiedzą).
-    Zarządzanie czasem: Użytkownicy mogą śledzić własne nawyki związane z korzystaniem z komputera, aby lepiej zarządzać czasem spędzanym w różnych aplikacjach.
-________________________________________________________
-Przykład pliku config.json z ustawieniem interwału robienia zrzutów ekranu:
-`{
+## Proces działania
+
+1. **Uruchomienie skryptu**: Skrypt nasłuchuje naciśnięć klawiszy i monitoruje aktywność aplikacji.
+2. **Monitorowanie aktywności**: Regularnie sprawdza aktywne aplikacje i rejestruje naciśnięcia klawiszy.
+3. **Zapis logów**: Po zakończeniu monitorowania dane są zapisywane w plikach (CSV i tekstowy).
+4. **Wizualizacja danych**: Skrypt generuje wykres przedstawiający czas spędzony w aplikacjach.
+5. **Wysyłanie e-maila**: Po zakończeniu monitorowania wysyłana jest wiadomość e-mail z załączonymi logami.
+
+## Przykładowa konfiguracja (`config.json`)
+
+```json
+{
   "duration_seconds": 3600,
   "alert_threshold": 1800,
-  "screenshot_interval": 60,  # Interwał robienia zrzutów ekranu w sekundach (1 minuta)
+  "screenshot_interval": 60,
   "email": {
     "to_email": "odbiorca@example.com"
-  }`
-  Co zostało dodane?
-
-    Interfejs Graficzny (GUI):
-        Tkinter został wykorzystany do stworzenia prostego GUI, w którym możesz ustawić czas monitorowania i interwał robienia zrzutów ekranu.
-        Użytkownik może wprowadzać wartości w polach tekstowych i kliknąć "Start", aby rozpocząć monitorowanie.
-        GUI działa w osobnym wątku, co pozwala na uruchamianie funkcji monitorowania w tle.
-
-    Konfiguracja z interfejsu:
-        Możesz teraz dynamicznie ustawić parametry monitorowania (np. interwał zrzutów ekranu i czas trwania monitorowania) bez potrzeby edytowania pliku config.json.
-
-    Start i stop monitorowania:
-        Użytkownik może uruchomić monitorowanie za pomocą przycisku "Start", co rozpoczyna rejestrację klawiszy, monitorowanie aplikacji oraz robienie zrzutów ekranu.
-
-Jak działa GUI?
-
-    Po uruchomieniu pojawia się okno graficzne z polami tekstowymi, w których można ustawić:
-        Czas trwania monitorowania (w sekundach).
-        Interwał robienia zrzutów ekranu (w sekundach).
-    Kliknięcie przycisku "Start" rozpoczyna proces monitorowania w tle.
-    Wyniki monitorowania są zapisywane w plikach, a raporty są wysyłane na e-mail.
-  
-______________________________________________________________________
-
-
+  }
+}
